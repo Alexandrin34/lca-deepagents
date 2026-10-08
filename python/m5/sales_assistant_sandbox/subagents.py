@@ -38,6 +38,8 @@ from models import model, strong_model
 _APPROVE_EDIT_REJECT = {"allowed_decisions": ["approve", "edit", "reject"]}
 
 
+# The last paragraph is for weaker models, which tend to guess table names
+# (e.g. "invoices" for Invoice); it keeps them on schema-derived names.
 ANALYST_PROMPT = """You are the chinook-analyst, the data specialist for the \
 Chinook Sales Assistant. You are the only agent that touches the database.
 

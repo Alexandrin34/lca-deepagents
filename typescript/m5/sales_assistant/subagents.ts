@@ -7,8 +7,9 @@
  * main agent uses (so the schema it discovers and the memory it reads point
  * at the same file on disk).
  *
- * - chinook-analyst — owns the database; self-bootstraps the schema into its
- *   own AGENTS.md; gates new-customer writes behind human approval.
+ * - chinook-analyst — owns the database; reads the schema from its own
+ *   (pre-filled) AGENTS.md and re-introspects it if it's missing or a name
+ *   fails; gates new-customer writes behind human approval.
  * - inbox-manager   — owns the mail (MCP) tools; gates saving a draft behind
  *   human approval. Only present when mail tools were discovered.
  * - quote-reviewer  — sanity-checks a drafted quote before it's sent.
@@ -42,6 +43,8 @@ const APPROVE_EDIT_REJECT: InterruptOnConfig = {
   allowedDecisions: ["approve", "edit", "reject"],
 };
 
+// The last paragraph is for weaker models, which tend to guess table names
+// (e.g. "invoices" for Invoice); it keeps them on schema-derived names.
 const ANALYST_PROMPT = context`
   You are the chinook-analyst, the data specialist for the
   Chinook Sales Assistant. You are the only agent that touches the database.

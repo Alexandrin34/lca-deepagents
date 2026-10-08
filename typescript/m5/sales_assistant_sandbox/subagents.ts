@@ -45,6 +45,8 @@ const APPROVE_EDIT_REJECT: InterruptOnConfig = {
   allowedDecisions: ["approve", "edit", "reject"],
 };
 
+// The last paragraph is for weaker models, which tend to guess table names
+// (e.g. "invoices" for Invoice); it keeps them on schema-derived names.
 const ANALYST_PROMPT = context`
   You are the chinook-analyst, the data specialist for the
   Chinook Sales Assistant. You are the only agent that touches the database.

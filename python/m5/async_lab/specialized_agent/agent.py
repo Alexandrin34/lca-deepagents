@@ -20,7 +20,7 @@ other remote deployment.
 import time
 
 import pandas as pd
-from langchain_anthropic import ChatAnthropic
+from langchain.chat_models import init_chat_model
 from langchain_core.tools import tool
 
 from deepagents import create_deep_agent
@@ -52,7 +52,11 @@ def analyze_sales(group_by: str = "region") -> str:
     return "\n".join(lines)
 
 
-model = ChatAnthropic(model="claude-haiku-4-5")
+# This deployment has its own environment, so it can't import the shared
+# models.py. Using another provider? Change this string to match your
+# models.py (e.g. "openai:gpt-6-luna"); langchain-openai is installed here.
+# For Google, run `uv add langchain-google-genai` in this directory first.
+model = init_chat_model("anthropic:claude-haiku-4-5")
 
 # langgraph.json points at this module-level variable: "./agent.py:graph"
 graph = create_deep_agent(model=model, tools=[analyze_sales])

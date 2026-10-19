@@ -43,10 +43,13 @@ model = init_chat_model("anthropic:claude-haiku-4-5", timeout=60, max_retries=2)
 strong_model = init_chat_model("anthropic:claude-sonnet-5-5", timeout=120, max_retries=2)
 
 # ═══ Alternative Models (comment out default above, uncomment one below) ═════
+# Setting a different key in .env is not enough: these lines decide which
+# provider every lab uses. Swap both `model` and `strong_model`.
 # model = init_chat_model("anthropic:claude-sonnet-5-5")
-# model = init_chat_model("openai:gpt-4.1-mini")
-# model = init_chat_model("openai:gpt-4.1")
-# strong_model = init_chat_model("openai:gpt-4.1")
+
+# OpenAI (requires OPENAI_API_KEY in .env)
+# model = init_chat_model("openai:gpt-6-luna")
+# strong_model = init_chat_model("openai:gpt-6.1-sol")
 
 # ═══ Open-Source / Alternative Hosted Models ══════════════════════════════════
 
@@ -103,4 +106,5 @@ strong_model = init_chat_model("anthropic:claude-sonnet-5-5", timeout=120, max_r
 # Install first:  uv sync --extra google
 # Requires GOOGLE_API_KEY in .env
 #
-# model = init_chat_model("google_genai:gemini-2.5-flash")
+# model = init_chat_model("google_genai:gemini-3.8-flash")
+# strong_model = init_chat_model("google_genai:gemini-3.8-flash")

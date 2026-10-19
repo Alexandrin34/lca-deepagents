@@ -10,6 +10,6 @@ def email_report(to: str, subject: str, body: str) -> str:
 
 agent = define_deep_agent(
     name="dvd-rental-analyst",
-    model="anthropic:claude-sonnet-5-5",  # any "provider:model" works; mda forwards that provider's key from .env
+    model="anthropic:claude-sonnet-5-5",
     tools=[email_report],
 )

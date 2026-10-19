@@ -52,10 +52,7 @@ def analyze_sales(group_by: str = "region") -> str:
     return "\n".join(lines)
 
 
-# This deployment has its own environment, so it can't import the shared
-# models.py. Using another provider? Change this string to match your
-# models.py (e.g. "openai:gpt-6-luna"); langchain-openai is installed here.
-# For Google, run `uv add langchain-google-genai` in this directory first.
+# Separate environment, so no shared models.py: edit this string to switch providers.
 model = init_chat_model("anthropic:claude-haiku-4-5")
 
 # langgraph.json points at this module-level variable: "./agent.py:graph"

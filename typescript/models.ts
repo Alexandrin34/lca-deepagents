@@ -52,11 +52,7 @@ export const model = await initChatModel("anthropic:claude-haiku-4-5", { timeout
 export const strongModel = await initChatModel("anthropic:claude-sonnet-5-5", { timeout: 120_000, maxRetries: 2 });
 
 // ═══ Alternative Models (comment out default above, uncomment one below) ═════
-// Setting a different key in .env is not enough: these lines decide which
-// provider every lab uses. Swap both `model` and `strongModel`.
 // export const model = await initChatModel("anthropic:claude-sonnet-5-5");
-
-// OpenAI (requires OPENAI_API_KEY in .env)
 // export const model = await initChatModel("openai:gpt-6-luna");
 // export const strongModel = await initChatModel("openai:gpt-6.1-sol");
 

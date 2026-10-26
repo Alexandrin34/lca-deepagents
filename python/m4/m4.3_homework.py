@@ -78,7 +78,7 @@ def build_corpus() -> str:
     raise NotImplementedError("TODO 1: see the comment block above")
 
 
-CORPUS_PATH.write_text(build_corpus())
+CORPUS_PATH.write_text(build_corpus(), encoding="utf-8")
 
 
 # ════════════════════════════════════════════════════════════════════════

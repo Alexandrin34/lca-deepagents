@@ -48,7 +48,7 @@ Customer wants to know if there's a dark mode planned for the mobile app.
 """
 
 
-CORPUS_PATH.write_text(build_corpus())
+CORPUS_PATH.write_text(build_corpus(), encoding="utf-8")
 
 
 # TODO 2 filled in

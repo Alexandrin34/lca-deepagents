@@ -27,7 +27,7 @@ result = agent.invoke(
 report = result["messages"][-1].text
 print(report)
 
-seeded = json.loads((DATA_DIR / "epic_corpus_key.json").read_text())
+seeded = json.loads((DATA_DIR / "epic_corpus_key.json").read_text(encoding="utf-8"))
 seeded_sentences = {entry["sentence"] for entry in seeded}
 found_sentences = {s for s in seeded_sentences if s in report}
 

@@ -13,7 +13,6 @@ DB_PATH = Path(__file__).parent / "chinook.db"
 db = SQLDatabase.from_uri(f"sqlite:///{DB_PATH}")
 
 SYSTEM_PROMPT = """You are a SQL analyst with access to the Chinook music store database.
-
 Rules:
 - Use read_sql for SELECT queries.
 - Do not modify the database.
@@ -39,7 +38,11 @@ agent = create_deep_agent(
 )
 
 result = agent.invoke(
-    {"messages": [{"role": "user", "content": "Which five genres have the most tracks?"}]}
+    {
+        "messages": [
+            {"role": "user", "content": "Which five genres have the most tracks?"}
+        ]
+    }
 )
 
 print(result["messages"][-1].text)

@@ -1,4 +1,5 @@
 import asyncio
+from typing import Any, cast
 
 from deepagents import create_deep_agent
 from langchain_mcp_adapters.client import MultiServerMCPClient
@@ -7,12 +8,16 @@ from models import model
 
 
 async def main():
-    client = MultiServerMCPClient({
-        "docs-langchain": {
-            "transport": "http",
-            "url": "https://docs.langchain.com/mcp",
-        }
-    })
+    connections = cast(
+        Any,
+        {
+            "docs-langchain": {
+                "transport": "http",
+                "url": "https://docs.langchain.com/mcp",
+            }
+        },
+    )
+    client = MultiServerMCPClient(connections)
     tools = await client.get_tools()
 
     print(f"\ndocs-langchain: {len(tools)} tool(s)")
@@ -30,9 +35,16 @@ async def main():
 
     agent = create_deep_agent(model=model, tools=tools)
 
-    result = await agent.ainvoke({
-        "messages": [{"role": "user", "content": "Use the LangChain docs MCP tool to explain what MCP is and how LangChain uses MCP tools."}]
-    })
+    result = await agent.ainvoke(
+        {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Use the LangChain docs MCP tool to explain what MCP is and how LangChain uses MCP tools.",
+                }
+            ]
+        }
+    )
     print(result["messages"][-1].text)
 
 

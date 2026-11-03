@@ -50,8 +50,7 @@ agent_with = create_deep_agent(
     tools=[query_chinook],
     middleware=[CodeInterpreterMiddleware(ptc=["query_chinook"])],
     system_prompt=(
-        SYSTEM
-        + " The eval tool supports Programmatic Tool Calling (PTC): JavaScript"
+        SYSTEM + " The eval tool supports Programmatic Tool Calling (PTC): JavaScript"
         " running inside eval() can call query_chinook via tools.queryChinook()."
         " For dependent queries where each answer requires a result from the"
         " previous, prefer a single eval() call that chains all queries in"

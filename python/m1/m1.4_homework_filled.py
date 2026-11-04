@@ -8,6 +8,7 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 from deepagents import create_deep_agent
+
 from models import model
 
 # TODO 1 filled in

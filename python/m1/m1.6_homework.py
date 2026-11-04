@@ -32,10 +32,8 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 from deepagents import create_deep_agent
-from langchain_mcp_adapters.client import MultiServerMCPClient
 
 from models import model
-
 
 # ════════════════════════════════════════════════════════════════════════
 # TODO 1: Build your MCP client and return its filtered tool list.
@@ -57,6 +55,7 @@ from models import model
 #       ALLOWED = {"some_tool_name"}
 #       return [t for t in tools if t.name in ALLOWED]
 # ════════════════════════════════════════════════════════════════════════
+
 
 async def build_tools():
     """TODO 1: build a MultiServerMCPClient, fetch its tools, filter them,

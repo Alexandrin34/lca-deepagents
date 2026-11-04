@@ -26,11 +26,10 @@ import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+from deepagents import create_deep_agent
 from langchain_core.tools import tool
 
-from deepagents import create_deep_agent
 from models import model
-
 
 # ════════════════════════════════════════════════════════════════════════
 # TODO 1: Define your own custom tool.
@@ -49,6 +48,7 @@ from models import model
 #       """One sentence describing what this returns and when to call it."""
 #       ...
 # ════════════════════════════════════════════════════════════════════════
+
 
 @tool
 def your_custom_tool(query: str) -> str:
@@ -82,7 +82,14 @@ agent = create_deep_agent(
 )
 
 result = agent.invoke(
-    {"messages": [{"role": "user", "content": "Ask your agent a question that needs your tool."}]}
+    {
+        "messages": [
+            {
+                "role": "user",
+                "content": "Ask your agent a question that needs your tool.",
+            }
+        ]
+    }
 )
 
 print(result["messages"][-1].text)

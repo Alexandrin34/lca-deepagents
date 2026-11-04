@@ -7,9 +7,9 @@ import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
+from deepagents import create_deep_agent
 from langchain_core.tools import tool
 
-from deepagents import create_deep_agent
 from models import model
 
 RETRO_GAME_FACTS = {
@@ -28,7 +28,9 @@ def lookup_retro_game_fact(game: str) -> str:
     key = game.strip().lower()
     if key in RETRO_GAME_FACTS:
         return RETRO_GAME_FACTS[key]
-    return f"No trivia on file for '{game}'. Known games: {', '.join(RETRO_GAME_FACTS)}."
+    return (
+        f"No trivia on file for '{game}'. Known games: {', '.join(RETRO_GAME_FACTS)}."
+    )
 
 
 # TODO 2 filled in

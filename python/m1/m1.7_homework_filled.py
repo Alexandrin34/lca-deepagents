@@ -27,22 +27,29 @@ FACT_QUESTION = "What's my iguana's name and what does he eat?"
 # TODO 2 filled in
 def run_scenario():
     result = agent.invoke(
-        {"messages": [{"role": "user", "content": "Remember that my pet iguana is named Steve and only eats dandelion greens."}]},
-        config=thread_a,
+        {
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "Remember that my pet iguana is named Steve and only eats dandelion greens.",
+                }
+            ]
+        },
+        config=thread_a,  # type: ignore
     )
     print("Thread A, turn 1:")
     print(result["messages"][-1].text)
 
     result = agent.invoke(
         {"messages": [{"role": "user", "content": FACT_QUESTION}]},
-        config=thread_a,
+        config=thread_a,  # type: ignore
     )
     print("\nThread A, turn 2 (same thread, should remember Steve):")
     print(result["messages"][-1].text)
 
     result = agent.invoke(
         {"messages": [{"role": "user", "content": FACT_QUESTION}]},
-        config=thread_b,
+        config=thread_b,  # type: ignore
     )
     print("\nThread B, turn 1 (different thread, should NOT know):")
     print(result["messages"][-1].text)
@@ -52,7 +59,7 @@ def run_scenario():
     fresh_agent = create_deep_agent(model=model, checkpointer=MemorySaver())
     result = fresh_agent.invoke(
         {"messages": [{"role": "user", "content": FACT_QUESTION}]},
-        config=thread_a,
+        config=thread_a,  # type: ignore
     )
     print("\nFresh agent, thread_a's thread_id (should NOT know):")
     print(result["messages"][-1].text)
